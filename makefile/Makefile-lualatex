@@ -1,0 +1,62 @@
+builddir     := .build
+LUALATEX     := luajittex --fmt=luajitlatex.fmt \
+  --halt-on-error --interaction=nonstopmode --file-line-error \
+  --output-directory=$(builddir)
+tex          :=
+pdf          := $(tex:.tex=.pdf)
+bibdir       := ref
+bibfile      := bibfile.bib
+biber_option := --output-directory=$(builddir)
+TAR          := tar --exclude $(builddir) -zcf
+archive      := $(notdir $(realpath .)).tgz
+remdir       := ~/Dropbox/
+
+.PHONY: protect
+#protect:;:
+
+.PHONY: once
+once:
+	mkdir -p $(builddir)
+	$(LUALATEX) $(tex)
+	mv $(builddir)/$(tex:.tex=.pdf) .
+
+.PHONY: bib
+bib: $(builddir)/$(tex:.tex=.bbl)
+	$(LUALATEX) $(tex) > /dev/null
+	mv $(builddir)/$(tex:.tex=.pdf) .
+
+$(builddir)/$(tex:.tex=.bbl): $(builddir)/$(tex:.tex=.bcf) $(bibfile)
+	biber $(biber_option) $(notdir $<)
+
+$(builddir)/$(tex:.tex=.bcf):
+	mkdir -p $(builddir)
+	$(LUALATEX) $(tex)
+
+$(bibfile): $(wildcard $(bibdir)/*.bib)
+	cat $^ > $@
+
+.PHONY: all
+all: pdf
+
+.PHONY: pdf
+pdf: once bib
+
+$(pdf): pdf
+
+.PHONY: clean
+clean:
+	rm -rf $(builddir)
+
+.PHONY: distclean
+distclean: clean
+	rm -f $(bibfile)
+	rm -f $(pdf)
+
+.PHONY: view
+view:
+	xdg-open $(pdf) &
+
+.PHONY: backup
+backup:
+	$(TAR) ../$(archive) ../$(notdir $(realpath .))
+	rsync -av --remove-source-files ../$(archive) $(remdir)
