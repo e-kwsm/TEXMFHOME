@@ -7,7 +7,8 @@ pdf          := $(tex:.tex=.pdf)
 bibdir       := ref
 bibfile      := bibfile.bib
 biber_option := --output-directory=$(builddir)
-TAR          := tar --exclude $(builddir) -zcf
+tar_exclude  := $(builddir)
+TAR          := tar $(addprefix --exclude , $(tar_exclude)) -acf
 archive      := $(notdir $(realpath .)).tgz
 remdir       := ~/Dropbox/
 
