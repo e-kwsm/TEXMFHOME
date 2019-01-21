@@ -35,10 +35,14 @@ def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
             if row[0][0] == "#":
                 continue
             journal, abbr = row
-            journal = journal.replace(" ", r"\s+")
-            journal = journal.replace(".", r"\.")
-            journal = journal.replace("(", r"\(")
-            journal = journal.replace(")", r"\)")
+            for old, new in [
+                [" ", r"\s+"],
+                [".", r"\."],
+                ["(", r"\("],
+                [")", r"\)"],
+                ["&", r"\\&"],
+            ]:
+                journal = journal.replace(old, new)
             journal = r"^\s*" + journal + r"\s*$"
             node_map_step = doc.createElement("map_step")
             node_map_step.setAttribute("map_field_source", "journal")
