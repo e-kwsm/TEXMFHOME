@@ -34,7 +34,7 @@ $(builddir)/$(tex:.tex=.bcf):
 	$(LUALATEX) $(tex)
 
 $(bibfile): $(wildcard $(bibdir)/*.bib)
-	cat $^ > $@
+	echo $^ | xargs cat > $@
 
 .PHONY: all
 all: pdf
@@ -59,5 +59,5 @@ view:
 
 .PHONY: backup
 backup:
-	$(TAR) ../$(archive) ../$(notdir $(realpath .))
-	rsync -av --remove-source-files ../$(archive) $(remdir)
+	$(TAR) /tmp/$(archive) ../$(notdir $(realpath .))
+	rsync -av --remove-source-files /tmp/$(archive) $(remdir)
