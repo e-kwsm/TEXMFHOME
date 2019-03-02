@@ -29,6 +29,12 @@ def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
     node_map.setAttribute("map_overwrite", "1")
     node_maps.appendChild(node_map)
 
+    node_map_step = doc.createElement("map_step")
+    node_map_step.setAttribute("map_field_source", "doi")
+    node_map_step.setAttribute("map_match", r".*/([^/]+/[^/]+)\s*$")
+    node_map_step.setAttribute("map_replace", "$1")
+    node_map.appendChild(node_map_step)
+
     logging.info("read {}".format(infile.name))
     with infile:
         for row in csv.reader(infile, delimiter="\t"):
