@@ -31,7 +31,7 @@ def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
 
     node_map_step = doc.createElement("map_step")
     node_map_step.setAttribute("map_field_source", "doi")
-    node_map_step.setAttribute("map_match", r"https?://\S*?/([^/]+/[^/]+)\s*$")
+    node_map_step.setAttribute("map_match", r"https?://[^/]+/(\S+)\s*$")
     node_map_step.setAttribute("map_replace", "$1")
     node_map.appendChild(node_map_step)
 
