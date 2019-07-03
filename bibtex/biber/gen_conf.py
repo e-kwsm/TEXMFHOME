@@ -58,7 +58,7 @@ def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
 
     logging.info("write {}".format(outfile.name))
     with outfile:
-        doc.writexml(outfile, addindent="  ", newl="\n", encoding="utf-8")
+        doc.writexml(outfile, addindent="  ", newl="\n", encoding="UTF-8")
 
 
 def main():
