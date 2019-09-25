@@ -26,13 +26,13 @@ bib: $(builddir)/$(tex:.tex=.bbl)
 	xdvipdfmx $(builddir)/$(tex:.tex=.xdv)
 
 $(builddir)/$(tex:.tex=.bbl): $(builddir)/$(tex:.tex=.bcf) $(bibfile)
-	biber $(biber_option) $(notdir $<)
+	biber $(biber_option) $(notdir $<) || { rm -f $< $@; exit 1; }
 
 $(builddir)/$(tex:.tex=.bcf): | $(builddir)
-	$(XELATEX) -no-pdf $(tex)
+	$(XELATEX) -no-pdf $(tex) || { rm -f $(builddir)/$(tex:.tex=.bbl); exit 1; }
 
-$(bibfile): $(sort $(wildcard $(bibdir)/*.bib))
-	echo $^ | xargs cat > $@
+$(bibfile): $(wildcard $(bibdir)/*.bib)
+	echo $(sort $^) | xargs cat > $@
 
 $(builddir):
 	mkdir -p $@
