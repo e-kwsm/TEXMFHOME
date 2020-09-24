@@ -26,10 +26,10 @@ bib: $(builddir)/$(tex:.tex=.bbl)
 	xdvipdfmx $(builddir)/$(tex:.tex=.xdv)
 
 $(builddir)/$(tex:.tex=.bbl): $(builddir)/$(tex:.tex=.bcf) $(bibfile)
-	biber $(biber_option) $(notdir $<) || { rm -f $< $@; exit 1; }
+	biber $(biber_option) $(notdir $<) || { rm -f $< $@; false; }
 
 $(builddir)/$(tex:.tex=.bcf): | $(builddir)
-	$(XELATEX) -no-pdf $(tex) || { rm -f $(builddir)/$(tex:.tex=.bbl); exit 1; }
+	$(XELATEX) -no-pdf $(tex) || { rm -f $(builddir)/$(tex:.tex=.bbl); false; }
 
 $(bibfile): $(wildcard $(bibdir)/*.bib)
 	echo $(sort $^) | xargs cat > $@
