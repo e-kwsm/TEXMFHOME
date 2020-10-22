@@ -1,0 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamersimpletheme}[2017/02/24]
+\mode<presentation>
+
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{sections/subsections in toc}[circle]
+
+\setbeamertemplate{headline}[default]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{%
+  \hfill%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \usebeamerfont{page number in head/foot}%
+  \insertframenumber\,\kern1em\vskip2pt%
+}
+
+%\setbeamertemplate{itemize/enumerate body begin}{\normalsize}
+%\setbeamertemplate{itemize/enumerate subbody begin}{\normalsize}
+%\setbeamertemplate{itemize/enumerate subsubbody begin}{\normalsize}
+\setbeamertemplate{enumerate item}{\insertenumlabel.}
+\setbeamertemplate{enumerate subitem}{\insertenumlabel.\insertsubenumlabel}
+\setbeamertemplate{enumerate subsubitem}{%
+    \insertenumlabel.\insertsubenumlabel.\insertsubsubenumlabel}
+
+\mode<all>
+
+\endinput
