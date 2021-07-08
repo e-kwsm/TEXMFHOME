@@ -12,8 +12,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
-    """abbreviate jounal titles
-    """
+    """abbreviate jounal titles"""
     doc = minidom.Document()
     node_config = doc.createElement("config")
     doc.appendChild(node_config)
@@ -35,7 +34,7 @@ def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
     node_map_step.setAttribute("map_replace", "$1")
     node_map.appendChild(node_map_step)
 
-    logging.info("read {}".format(infile.name))
+    logging.info(f"read {infile.name}")
     with infile:
         for row in csv.reader(infile, delimiter="\t"):
             if row[0][0] == "#":
@@ -56,17 +55,27 @@ def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
             node_map_step.setAttribute("map_replace", abbr)
             node_map.appendChild(node_map_step)
 
-    logging.info("write {}".format(outfile.name))
+    logging.info(f"write {outfile.name}")
     with outfile:
         doc.writexml(outfile, addindent="  ", newl="\n", encoding="UTF-8")
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("infile", nargs="?", default="journal_list.tsv", type=argparse.FileType(),
-                        help="CSV of abbreviations")
-    parser.add_argument("outfile", nargs="?", default="biber.conf",
-                        type=argparse.FileType("w", encoding="UTF-8"), help="biber.conf")
+    parser.add_argument(
+        "infile",
+        nargs="?",
+        default="journal_list.tsv",
+        type=argparse.FileType(),
+        help="CSV of abbreviations",
+    )
+    parser.add_argument(
+        "outfile",
+        nargs="?",
+        default="biber.conf",
+        type=argparse.FileType("w", encoding="UTF-8"),
+        help="biber.conf",
+    )
     args = parser.parse_args()
     abbreviate_jounals(**vars(args))
 
