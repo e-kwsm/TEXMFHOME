@@ -1,5 +1,8 @@
 #journal	abbreviation
+ACS Applied Energy Materials	ACS Appl. Energy Mater.
 ACS Applied Materials & Interfaces	ACS Appl. Mater. Interfaces
+ACS Energy Letters	ACS Energy Lett.
+ACS Sustainable Chemistry & Engineering	ACS Sustainable Chem. Eng.
 AIChE Journal	AIChE J.
 APL Materials	APL Mater.
 Accounts of Chemical Research	Acc. Chem. Res.
@@ -19,6 +22,7 @@ Computational Materials Science	Comput. Mater. Sci.
 Computer Physics Communications	Comput. Phys. Commun.
 Die Makromolekulare Chemie	Makromol. Chem.
 Electron Devices, IEEE Transactions on	IEEE Trans. Electron Dev.
+Energy & Fuels	Energy Fuels
 Environmental Science & Technology	Environ. Sci. Technol.
 European Polymer Journal	Eur. Polym. J.
 Industrial & Engineering Chemistry Research	Ind. Eng. Chem. Res.
@@ -27,6 +31,7 @@ International Journal of Quantum Chemistry	Int. J. Quantum Chem.
 Journal of Applied Physics	J. Appl. Phys.
 Journal of Applied Polymer Science	J. Appl. Polym. Sci.
 Journal of Biomedical Materials Research Part A	J. Biomed. Mater. Res.
+Journal of Chemical Information and Modeling	J. Chem. Inf. Model.
 Journal of Chemical Theory and Computation	J. Chem. Theory Comput.
 Journal of Cheminformatics	J. Cheminformatics
 Journal of Computational Chemistry	J. Comput. Chem.
@@ -43,6 +48,7 @@ Journal of Rheology	J. Rheol.
 Journal of Toxicology and Environmental Health, Part A	J. Toxicol. Environ. Health A
 Journal of the American Chemical Society	J. Am. Chem. Soc.
 Macromolcular Bioscience	Macromol. Biosci.
+Macromolecular Symposia	Macromol. Symp.
 Materials Science and Engineering: R: Reports	Mater. Sci. Eng., R
 Molecular Physics	Mol. Phys.
 Nano Letters	Nano Lett.
@@ -68,6 +74,7 @@ Progress in Photovoltaics: Research and Applications	Prog. Photovolt: Res. Appl.
 Progress in Polymer Science	Prog. Polym. Sci.
 Pure and Applied Chemistry	Pure Appl. Chem.
 Renewable and Sustainable Energy Reviews	Renew. Sustain. Energy Rev.
+Science Advances	Sci. Adv.
 Scientific Data	Sci. Data
 Scientific Reports	Sci. Rep.
 Selected Topics in Quantum Electronics, IEEE Journal of	IEEE J. Sel. Top. Quantum Electron.
@@ -86,5 +93,6 @@ Theoretica chimica acta	Theor. Chem. Acc.
 Theoretical Chemistry Accounts	Theor. Chem. Acc.
 Toxicology and Applied Pharmacology	Toxicol. Appl. Pharmacol.
 Transactions of The Society of Rheology	Trans. Soc. Rheol.
-physica status solidi (a)	phys. stat. sol. (a)
+WIREs Computational Molecular Science	WIREs Comput. Mol. Sci.
+physica status solidi (a)	Phys. Status Solidi A
 physica status solidi (b)	Phys. Status Solidi B
