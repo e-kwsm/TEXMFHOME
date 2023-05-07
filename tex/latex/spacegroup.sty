@@ -1,0 +1,26 @@
+\RequirePackage{expl3}
+\ProvidesExplPackage{spacegroup}{2023-05-07}{v0.0.0}{}
+
+\seq_new:N \l_spacegroup_hermann_mauguin_seq
+% * remove spaces
+% * use bar
+\NewDocumentCommand{\HermannMauguin}{ssm}{
+  \int_case:nnTF{#3}{
+    {  1}{}
+    {  2}{}
+    { 61}{\seq_set_split:Nnn \l_spacegroup_hermann_mauguin_seq {,} { \textit{P} , \textit{b} , \textit{c} , \textit{a} }}
+    {123}{\seq_set_split:Nnn \l_spacegroup_hermann_mauguin_seq {,} { \textit{P} , 4/\textit{m} , \textit{m} , \textit{m} }}
+    {136}{\seq_set_split:Nnn \l_spacegroup_hermann_mauguin_seq {,} { \textit{P} , 4\textsubscript{2}/\textit{m} , \textit{n} , \textit{m} }}
+    {141}{\seq_set_split:Nnn \l_spacegroup_hermann_mauguin_seq {,} { \textit{I} , 4\textsubscript{1}/\textit{a} , \textit{m} , \textit{d} }}
+    {225}{\seq_set_split:Nnn \l_spacegroup_hermann_mauguin_seq {,} { \textit{F} , \textit{m} , \IfBooleanTF{#2}{$\bar{\makebox{3}}$}{-3} , \textit{m} }}
+    {230}{\seq_set_split:Nnn \l_spacegroup_hermann_mauguin_seq {,} { \textit{I} , \textsubscript{a} , -3 , \textit{d} }}
+  }{
+    \IfBooleanTF{#1}{
+      \seq_use:Nn \l_spacegroup_hermann_mauguin_seq {}
+    }{
+      \seq_use:Nn \l_spacegroup_hermann_mauguin_seq {~}
+    }
+  }{
+    invalid
+  }
+}
