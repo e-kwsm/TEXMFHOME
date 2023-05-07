@@ -1,0 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{spacegroup}[2023/05/07]
+\RequirePackage{expl3}
+
+\ExplSyntaxOn
+\seq_new:N \l_spg_seq
+\NewDocumentCommand{\HermannMauguin}{sm}{
+  \int_case:nnTF {#2}{
+    {  1}{\seq_set_split:Nnn \l_spg_seq {,} { \textit{P} , 1 }}
+    {  2}{\seq_set_split:Nnn \l_spg_seq {,} { \textit{P} , -1 }}
+    { 61}{\seq_set_split:Nnn \l_spg_seq {,} { \textit{P} , \textit{b} , \textit{c} , \textit{a} }}
+    {123}{\seq_set_split:Nnn \l_spg_seq {,} { \textit{P} , 4/\textit{m} , \textit{m} , \textit{m} }}
+    {136}{\seq_set_split:Nnn \l_spg_seq {,} { \textit{P} , 4\textsubscript{2}/\textit{m} , \textit{n} , \textit{m} }}
+    {141}{\seq_set_split:Nnn \l_spg_seq {,} { \textit{I} , 4\textsubscript{1}/\textit{a} , \textit{m} , \textit{d} }}
+    {225}{\seq_set_split:Nnn \l_spg_seq {,} { \textit{F} , \textsubscript{m} , -3 , \textit{m} }}
+    {230}{\seq_set_split:Nnn \l_spg_seq {,} { \textit{I} , \textsubscript{a} , -3 , \textit{d} }}
+  }{
+    \IfBooleanTF{#1}{
+      \seq_use:Nn \l_spg_seq {}
+    }{
+      \seq_use:Nn \l_spg_seq {~}
+    }
+  }{
+    invalid
+  }
+}
+\ExplSyntaxOff
