@@ -1,8 +1,6 @@
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{spacegroup}[2023/05/07]
 \RequirePackage{expl3}
+\ProvidesExplPackage{spacegroup}{2023-05-07}{v0.0.0}{}
 
-\ExplSyntaxOn
 \seq_new:N \l_spacegroup_hermann_mauguin_seq
 % * remove spaces
 % * use bar
@@ -24,4 +22,3 @@
     invalid
   }
 }
-\ExplSyntaxOff
