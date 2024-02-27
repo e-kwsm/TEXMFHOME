@@ -7,8 +7,7 @@ import logging
 from typing import TextIO
 from xml.dom import minidom
 
-
-logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger()
 
 
 def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
@@ -34,7 +33,7 @@ def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
     node_map_step.setAttribute("map_replace", "$1")
     node_map.appendChild(node_map_step)
 
-    logging.info(f"read {infile.name}")
+    logger.info(f"read {infile.name}")
     with infile:
         for row in csv.reader(infile, delimiter="\t"):
             if row[0][0] == "#":
@@ -55,12 +54,13 @@ def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
             node_map_step.setAttribute("map_replace", abbr)
             node_map.appendChild(node_map_step)
 
-    logging.info(f"write {outfile.name}")
+    logger.info(f"write {outfile.name}")
     with outfile:
         doc.writexml(outfile, addindent="  ", newl="\n", encoding="UTF-8")
 
 
 def main():
+    logging.basicConfig(level=logging.INFO)
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "infile",
