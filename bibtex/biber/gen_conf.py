@@ -36,7 +36,7 @@ def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
     logger.info(f"read {infile.name}")
     with infile:
         for row in csv.reader(infile, delimiter="\t"):
-            if row[0][0] == "#":
+            if row[0].startswith("#"):
                 continue
             journal, abbr = row
             for old, new in [
