@@ -44,7 +44,6 @@ def abbreviate_jounals(infile: TextIO, outfile: TextIO) -> None:
                 [".", r"\."],
                 ["(", r"\("],
                 [")", r"\)"],
-                ["&", r"\\&"],
             ]:
                 journal = journal.replace(old, new)
             journal = r"^\s*" + journal + r"\s*$"
